@@ -9,7 +9,7 @@ class CountriesLibrary extends React.Component {
     this.state = {
       countries: [],
       value: '',
-      filter: true,
+      // filter: false,
     }
   }
 
@@ -29,31 +29,33 @@ class CountriesLibrary extends React.Component {
   HandleChange = (event) => {
     this.setState({
       value: event.target.value,
-      filter: false,
+      // filter: true,
     })
   }
 
 
-  HandleReturn = () => {
-    const { countries, value } = this.state;
+  // HandleReturn = () => {
+  //   const { countries, value, filter } = this.state;
 
-    const countriesFilter = countries.filter(countrie => countrie.name.includes(value))
-    console.log(countriesFilter);
+  //   const countriesFilter = countries.filter(countrie => countrie.name.includes(value))
+  //   console.log(countriesFilter);
 
-    if(this.state.filter === true) {
-      <CountriesList contries={ countriesFilter } />
-    }
+  //   // if(filter === true) {
+  //   //   <CountriesList countries={ countriesFilter } />
+  //   // }
 
-    return <CountriesList contries={ countries } />
-  }
+  //   return <CountriesList countries={ countriesFilter } />
+  // }
 
   render() {
     // console.log(this.state);
-    // const { countries } = this.state;
+    const { countries, value } = this.state;
+    const countriesFilter = countries.filter(countrie => countrie.name.includes(value))
+
     return (
       <main>
-        <input  onChange={ this.HandleChange }/>
-        { this.HandleReturn() }
+        <input onChange={ this.HandleChange }/>
+        <CountriesList countries={ countriesFilter } />
       </main>
     );
   }
