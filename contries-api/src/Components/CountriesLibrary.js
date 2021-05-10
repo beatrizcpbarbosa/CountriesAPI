@@ -1,6 +1,7 @@
 import React from 'react';
 // import './App.css';
 import CountriesList from './CountriesList'
+// import FilterRegion from './FilterRegion'
 
 
 class CountriesLibrary extends React.Component {
@@ -9,7 +10,7 @@ class CountriesLibrary extends React.Component {
     this.state = {
       countries: [],
       value: '',
-      // filter: false,
+      filter: false,
     }
   }
 
@@ -47,14 +48,38 @@ class CountriesLibrary extends React.Component {
   //   return <CountriesList countries={ countriesFilter } />
   // }
 
+  HandleSelectFilter = (event) => {
+    const { countries, filter } = this.state;
+    const name = event.target.name;
+    this.setState({
+      filter: true,
+    })
+    const countriesFilterRegion = countries.filter(country => country.region.includes(name))
+
+    if(filter === true) return  <CountriesList countries={ countriesFilterRegion } />
+     
+  }
+
   render() {
     // console.log(this.state);
     const { countries, value } = this.state;
-    const countriesFilter = countries.filter(countrie => countrie.name.includes(value))
+    const countriesFilter = countries.filter(country => country.name.includes(value))
+    console.log(countriesFilter);
 
     return (
       <main>
-        <input onChange={ this.HandleChange }/>
+        <input placeholder='Search for a country...' onChange={ this.HandleChange }/>
+
+        <select> Filter by Region
+          <option name="all" onClick={ this.HandleSelectFilter }> All </option>
+          <option name="Africa" onClick={ this.HandleSelectFilter }> Afríca </option>
+          <option name="America" onClick={ this.HandleSelectFilter }> America </option>
+          <option name="Asia" onClick={ this.HandleSelectFilter }> Asia </option>
+          <option name="Europe" onClick={ this.HandleSelectFilter }> Europe </option>
+          <option name="Oceania" onClick={ this.HandleSelectFilter }> Oceania </option>
+       </select>
+
+        {/* <FilterRegion countries={ countries } /> */}
         <CountriesList countries={ countriesFilter } />
       </main>
     );

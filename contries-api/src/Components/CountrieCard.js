@@ -1,21 +1,21 @@
 import React from 'react';
 // import './App.css';
 
-class CountrieCard extends React.Component {
+class CountryCard extends React.Component {
 
   render() {
 
-    const { countrie } = this.props
+    const { country } = this.props
     
 
     return (
       <div>
-        <img  src={ countrie.flag } alt={ countrie.name } />
+        <img  src={ country.flag } alt={ country.name } />
         <div>
-          <h4>{ countrie.name}</h4>
-          <p>{ `Population: ${countrie.population}` }</p>
-          <p>{ `Region: ${countrie.region}` }</p>
-          <p>{ `Capital: ${countrie.capital}` }</p>
+          <h4>{ country.name}</h4>
+          <p>{ `Population: ${country.population}` }</p>
+          <p>{ `Region: ${country.region}` }</p>
+          <p>{ `Capital: ${country.capital}` }</p>
         </div>  
     </div>
      
@@ -25,4 +25,4 @@ class CountrieCard extends React.Component {
     
 }
 
-export default CountrieCard;
+export default CountryCard;

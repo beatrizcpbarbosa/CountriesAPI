@@ -1,6 +1,6 @@
 import React from 'react';
 // import './App.css';
-import CountrieCard from './CountrieCard'
+import CountryCard from './CountrieCard'
 
 class CoutriesLibrary extends React.Component {
 
@@ -11,7 +11,7 @@ class CoutriesLibrary extends React.Component {
 
     return (
       <section >
-        { countries.map((countrie) => <CountrieCard key={ countrie.alpha3Code } countrie={ countrie } /> ) }
+        { countries.map((country) => <CountryCard key={ country.alpha3Code } country={ country } /> ) }
       </section>
     );
   }
