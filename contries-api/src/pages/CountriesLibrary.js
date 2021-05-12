@@ -1,7 +1,6 @@
 import React from 'react';
-// import './App.css';
-import CountriesList from './CountriesList'
-// import FilterRegion from './FilterRegion'
+import CountriesList from '../components/CountriesList'
+import FilterRegion from '../components/FilterRegion';
 
 
 class CountriesLibrary extends React.Component {
@@ -10,7 +9,7 @@ class CountriesLibrary extends React.Component {
     this.state = {
       countries: [],
       value: '',
-      filter: false,
+      // filter: false,
     }
   }
 
@@ -30,23 +29,9 @@ class CountriesLibrary extends React.Component {
   HandleChange = (event) => {
     this.setState({
       value: event.target.value,
-      // filter: true,
+      filter: true,
     })
   }
-
-
-  // HandleReturn = () => {
-  //   const { countries, value, filter } = this.state;
-
-  //   const countriesFilter = countries.filter(countrie => countrie.name.includes(value))
-  //   console.log(countriesFilter);
-
-  //   // if(filter === true) {
-  //   //   <CountriesList countries={ countriesFilter } />
-  //   // }
-
-  //   return <CountriesList countries={ countriesFilter } />
-  // }
 
   HandleSelectFilter = (event) => {
     const { countries, filter } = this.state;
@@ -60,6 +45,7 @@ class CountriesLibrary extends React.Component {
      
   }
 
+
   render() {
     // console.log(this.state);
     const { countries, value } = this.state;
@@ -67,21 +53,12 @@ class CountriesLibrary extends React.Component {
     console.log(countriesFilter);
 
     return (
-      <main>
+      <div>
         <input placeholder='Search for a country...' onChange={ this.HandleChange }/>
+        <FilterRegion />
 
-        <select> Filter by Region
-          <option name="all" onClick={ this.HandleSelectFilter }> All </option>
-          <option name="Africa" onClick={ this.HandleSelectFilter }> Afríca </option>
-          <option name="America" onClick={ this.HandleSelectFilter }> America </option>
-          <option name="Asia" onClick={ this.HandleSelectFilter }> Asia </option>
-          <option name="Europe" onClick={ this.HandleSelectFilter }> Europe </option>
-          <option name="Oceania" onClick={ this.HandleSelectFilter }> Oceania </option>
-       </select>
-
-        {/* <FilterRegion countries={ countries } /> */}
         <CountriesList countries={ countriesFilter } />
-      </main>
+      </div>
     );
   }
 
