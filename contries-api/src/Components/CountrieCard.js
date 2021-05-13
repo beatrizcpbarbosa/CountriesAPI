@@ -9,16 +9,25 @@ class CountryCard extends React.Component {
     
 
     return (
-      <div className="card">
-        <img  src={ country.flag } alt={ country.name } />
-        <div>
-          <h4>{ country.name}</h4>
-          <p>{ `Population: ${country.population}` }</p>
-          <p>{ `Region: ${country.region}` }</p>
-          <p>{ `Capital: ${country.capital}` }</p>
-          <Link className="link" to={ `/${country.name}` }>Ver Detalhes</Link>
-        </div>  
+        <div className="card">
+          <Link className="link" to={ `/${country.name}` }>
+
+            <div className="img-cover">
+              <img  src={ country.flag } alt={ country.name } />
+            </div>
+            
+
+            <div className="content-card">
+              <h4>{ country.name}</h4>
+              <p>{ `Population: ${country.population}` }</p>
+              <p>{ `Region: ${country.region}` }</p>
+              <p>{ `Capital: ${country.capital}` }</p>
+              {/* <Link className="link" to={ `/${country.name}` }>Ver Detalhes</Link> */}
+            </div>  
+
+          </Link>
       </div>
+      
     );
   }
 

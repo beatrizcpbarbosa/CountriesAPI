@@ -7,11 +7,20 @@ class CountryDetails extends React.Component {
     super()
     this.state = {
       country: {},
+      countries: [],
     }
     this.fetchCountries = this.fetchCountries.bind(this);
   }
 
   fetchCountries = async () => {
+    const requestReturn = await fetch('https://restcountries.eu/rest/v2/all');
+    const requestData = await requestReturn.json();
+    this.setState({
+      countries: requestData,
+    })
+  }
+
+  fetchCountry = async () => {
     const { match: { params: { name } } } = this.props;
     console.log(this.props);
     const requestReturn = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
@@ -24,30 +33,41 @@ class CountryDetails extends React.Component {
   }
 
   componentDidMount () {
+    this.fetchCountry();
     this.fetchCountries();
-    
   }
 
-  // handleBorderCoutries = () => {
-  //   const { country } = this.state;
-  //   const array = country.borders
-  //   console.log(array);
+  handleBorderCoutries = () => {
+    // const { country, countries } = this.state;
+    // const array = country.borders
+    // console.log(array);
     
-  //   array.map((item) => item.alpha3Code === 
+
+    // const borders = country.borders.map((border) => {
+    //     countries.filter((country) => country.alpha3Code === border);
+    // });
+    // console.log(borders)
     
     
-  // }
+   
+      
+      
+    // array.map((item) => item.alpha3Code === 
+    
+    return <Link to="">
+
+    </Link>
+  }
 
   render() {
     const { country } = this.state;
-    console.log(country);
+    console.log(country.borders);
 
-    // const currencies = country.currencies;
-    // console.log(currencies);
+    // const currencies = country.currencies.map((item) => (item.name));
 
-    // const arrayLinguas = country.languages;
+    const arrayLinguas = country.languages;
     // const linguas = arrayLinguas.map((item) => item.name);
-    // console.log(arrayLinguas);
+    console.log(arrayLinguas);
 
 
     return (
@@ -69,7 +89,7 @@ class CountryDetails extends React.Component {
 
             <div>
               <p>{`Top Level Domain: ${country.topLevelDomain}`}</p>
-              {/* <p>{`Currencies: ${country.currencies[0].name}`}</p> */}
+              {/* <p>{`Currencies: ${currencies}`}</p> */}
               <p>{`Languages: `}</p>
             </div>
         </div>

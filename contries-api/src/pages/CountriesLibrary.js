@@ -43,8 +43,7 @@ class CountriesLibrary extends React.Component {
   }
 
   HandleFilter = () => {
-    console.log(this.state);
-    const { countries, valueInput, valueSelect, filterSelect, filterInput} = this.state;
+    const { countries, valueInput, valueSelect, filterSelect } = this.state;
 
     if(filterSelect === true) {
       const countriesSelect = countries.filter(country => country.region.includes(valueSelect));
@@ -56,23 +55,25 @@ class CountriesLibrary extends React.Component {
     
   }
 
-
-
   render() {
   
     return (
       <div>
-        <input placeholder='Search for a country...' onChange={ this.HandleChangeInput }/>
+        <div className="search-bar">
+          
+          <input placeholder='Search for a country...' onChange={ this.HandleChangeInput }/>
 
-        <select onChange={this.HandleChangeSelect }>
-          <option hidden>Filter by Region</option>
-          <option value=""> All </option>
-          <option value="Africa" > Afríca </option>
-          <option value="America"> America </option>
-          <option value="Asia" > Asia </option>
-          <option value="Europe"> Europe </option>
-          <option value="Oceania"> Oceania </option>
-       </select>
+          <select onChange={this.HandleChangeSelect }>
+            <option hidden>Filter by Region</option>
+            <option value=""> All </option>
+            <option value="Africa" > Afríca </option>
+            <option value="America"> America </option>
+            <option value="Asia" > Asia </option>
+            <option value="Europe"> Europe </option>
+            <option value="Oceania"> Oceania </option>
+          </select>
+        </div>
+        
 
         { this.HandleFilter() }
       </div>
