@@ -9,7 +9,7 @@ class CountryCard extends React.Component {
     
 
     return (
-      <div>
+      <div className="card">
         <img  src={ country.flag } alt={ country.name } />
         <div>
           <h4>{ country.name}</h4>
@@ -18,8 +18,7 @@ class CountryCard extends React.Component {
           <p>{ `Capital: ${country.capital}` }</p>
           <Link className="link" to={ `/${country.name}` }>Ver Detalhes</Link>
         </div>  
-    </div>
-     
+      </div>
     );
   }
 

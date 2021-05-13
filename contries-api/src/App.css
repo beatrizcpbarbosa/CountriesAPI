@@ -1,1 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+}
+
+header {
+  background-color: white;
+  padding: 30px;
+  box-shadow: 10px 10px 10px rgb(230, 228, 228);
+  margin-bottom: 60px;
+}
+
+header h2 {
+  background-color: white;
+}
+
+input {
+  width: 200px;
+  padding: 20px;
+  border: none;
+  background-color: white;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+}
+
+.card {
+  width: 20%;
+  background-color:white;
+  margin: 30px;
+  box-shadow: 5px 5px 10px rgb(202, 202, 202);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+}
+
+.country-page {
+  justify-content: center;
+}
+
+.content {
+  margin-left: 40px;
+}
 

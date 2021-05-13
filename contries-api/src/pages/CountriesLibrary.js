@@ -1,6 +1,5 @@
 import React from 'react';
 import CountriesList from '../components/CountriesList'
-import FilterRegion from '../components/FilterRegion';
 
 
 class CountriesLibrary extends React.Component {
@@ -9,7 +8,6 @@ class CountriesLibrary extends React.Component {
     this.state = {
       countries: [],
       value: '',
-      // filter: false,
     }
   }
 
@@ -18,6 +16,9 @@ class CountriesLibrary extends React.Component {
     const requestData = await requestReturn.json();
     this.setState({
       countries: requestData,
+      valueInput: '',
+      valueSelect: '',
+      filterSelect: false,
     })
   }
 
@@ -26,38 +27,54 @@ class CountriesLibrary extends React.Component {
     
   }
 
-  HandleChange = (event) => {
+  HandleChangeInput = (event) => {
     this.setState({
-      value: event.target.value,
-      filter: true,
+      valueInput: event.target.value,
+      filterSelect: false,
     })
   }
 
-  HandleSelectFilter = (event) => {
-    const { countries, filter } = this.state;
-    const name = event.target.name;
-    this.setState({
-      filter: true,
-    })
-    const countriesFilterRegion = countries.filter(country => country.region.includes(name))
 
-    if(filter === true) return  <CountriesList countries={ countriesFilterRegion } />
-     
+  HandleChangeSelect = (event) => {
+    this.setState({
+      valueSelect: event.target.value,
+      filterSelect: true,
+    })
   }
+
+  HandleFilter = () => {
+    console.log(this.state);
+    const { countries, valueInput, valueSelect, filterSelect, filterInput} = this.state;
+
+    if(filterSelect === true) {
+      const countriesSelect = countries.filter(country => country.region.includes(valueSelect));
+      return <CountriesList countries={ countriesSelect } />
+    }
+
+    const countriesInput = countries.filter(country => country.name.includes(valueInput));
+    return <CountriesList countries={ countriesInput} />
+    
+  }
+
 
 
   render() {
-    // console.log(this.state);
-    const { countries, value } = this.state;
-    const countriesFilter = countries.filter(country => country.name.includes(value))
-    console.log(countriesFilter);
-
+  
     return (
       <div>
-        <input placeholder='Search for a country...' onChange={ this.HandleChange }/>
-        <FilterRegion />
+        <input placeholder='Search for a country...' onChange={ this.HandleChangeInput }/>
 
-        <CountriesList countries={ countriesFilter } />
+        <select onChange={this.HandleChangeSelect }>
+          <option hidden>Filter by Region</option>
+          <option value=""> All </option>
+          <option value="Africa" > Afríca </option>
+          <option value="America"> America </option>
+          <option value="Asia" > Asia </option>
+          <option value="Europe"> Europe </option>
+          <option value="Oceania"> Oceania </option>
+       </select>
+
+        { this.HandleFilter() }
       </div>
     );
   }

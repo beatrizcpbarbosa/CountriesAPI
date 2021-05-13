@@ -8,7 +8,7 @@ class CoutriesLibrary extends React.Component {
     const { countries } = this.props
 
     return (
-      <section >
+      <section className="flex">
         { countries.map((country) => <CountryCard key={ country.alpha3Code } country={ country } /> ) }
       </section>
     );
