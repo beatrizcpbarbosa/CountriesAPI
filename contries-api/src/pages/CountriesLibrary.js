@@ -51,7 +51,7 @@ class CountriesLibrary extends React.Component {
     }
 
     const countriesInput = countries.filter(country => country.name.includes(valueInput));
-    return <CountriesList countries={ countriesInput} />
+    return <CountriesList countries={ countriesInput } />
     
   }
 
@@ -73,10 +73,11 @@ class CountriesLibrary extends React.Component {
             <option value="Oceania"> Oceania </option>
           </select>
         </div>
-        
 
         { this.HandleFilter() }
+
       </div>
+
     );
   }
 

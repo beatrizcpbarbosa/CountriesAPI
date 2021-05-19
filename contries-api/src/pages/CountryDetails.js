@@ -27,12 +27,13 @@ class CountryDetails extends React.Component {
     const requestData = await requestReturn.json();
     const objectData = requestData[0];
     console.log(objectData);
+    console.log(requestData);
     this.setState({
       country: objectData,
     })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchCountry();
     this.fetchCountries();
   }
@@ -41,16 +42,12 @@ class CountryDetails extends React.Component {
     // const { country, countries } = this.state;
     // const array = country.borders
     // console.log(array);
-    
 
     // const borders = country.borders.map((border) => {
     //     countries.filter((country) => country.alpha3Code === border);
     // });
     // console.log(borders)
     
-    
-   
-      
       
     // array.map((item) => item.alpha3Code === 
     
@@ -61,25 +58,34 @@ class CountryDetails extends React.Component {
 
   render() {
     const { country } = this.state;
+    const { currencies } = country
     console.log(country.borders);
+    console.log(country.currencies);
+    console.log(country.languages);
 
-    // const currencies = country.currencies.map((item) => (item.name));
+    // const a = country.currencies;
+    // const b = [...currencies];
+    console.log(currencies)
 
-    const arrayLinguas = country.languages;
-    // const linguas = arrayLinguas.map((item) => item.name);
-    console.log(arrayLinguas);
+    // const currencies = country.currencies
+    // const moeda = currencies.forEach(item => item.name);
+    // console.log(moeda);
+
+    // const arrayLinguas = country.languages;
+    // const linguas = arrayLinguas.forEach((item) => item.name);
+    // const moeda = country.currencies;
 
 
     return (
       <div className="flex country-page">
+
         <img alt="Coutry Flag" src={ country.flag } />
 
         <div className="content">
           <h2>{ country.name }</h2>
 
           <div className="flex info">
-          
-          <div>
+            <div>
               <p>{`Native Name: ${country.nativeName}`}</p>
               <p>{`Population: ${country.population}`}</p>
               <p>{`Region: ${country.region}`}</p>
@@ -89,17 +95,17 @@ class CountryDetails extends React.Component {
 
             <div>
               <p>{`Top Level Domain: ${country.topLevelDomain}`}</p>
-              {/* <p>{`Currencies: ${currencies}`}</p> */}
-              <p>{`Languages: `}</p>
+              <p>{`Currencies: ${country.currencies}`}</p>
+              <p>{`Languages: ${country.languages}`}</p>
             </div>
-        </div>
+          </div>
           
           <p>Border Countries:</p>
 
-
           <button type="button">
-            <Link to="/">Voltar</Link>
+            <Link class="link" to="/">Voltar</Link>
           </button>
+
         </div>
 
       </div>
