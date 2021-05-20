@@ -8,8 +8,8 @@ class CountryDetails extends React.Component {
     this.state = {
       country: {},
       countries: [],
+      loading: true,
     }
-    this.fetchCountries = this.fetchCountries.bind(this);
   }
 
   fetchCountries = async () => {
@@ -17,19 +17,18 @@ class CountryDetails extends React.Component {
     const requestData = await requestReturn.json();
     this.setState({
       countries: requestData,
+      loading: false,
     })
   }
 
   fetchCountry = async () => {
     const { match: { params: { name } } } = this.props;
-    console.log(this.props);
     const requestReturn = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
     const requestData = await requestReturn.json();
     const objectData = requestData[0];
-    console.log(objectData);
-    console.log(requestData);
     this.setState({
       country: objectData,
+      loading: false,
     })
   }
 
@@ -38,43 +37,39 @@ class CountryDetails extends React.Component {
     this.fetchCountries();
   }
 
-  handleBorderCoutries = () => {
-    // const { country, countries } = this.state;
-    // const array = country.borders
-    // console.log(array);
+  // handleBorderCoutries = () => {
+  //   const { country, countries } = this.state;
 
-    // const borders = country.borders.map((border) => {
-    //     countries.filter((country) => country.alpha3Code === border);
-    // });
-    // console.log(borders)
-    
+  //   console.log(country.borders);
+  //   console.log(bordercoutries);
       
-    // array.map((item) => item.alpha3Code === 
-    
-    return <Link to="">
+  //   if(country.borders.length > 0) {
 
-    </Link>
-  }
+  //     const bordercoutries = country.borders
+  //     .map((countryBorder) => countries.filter((country) =>{
+        
+  //       country.alpha3Code === countryBorder
+
+  //       return (
+  //         // <Link className="link" to={ `/${}` }>
+  //         <Link key={ xmen.id }>
+  //           <div className="border">{bordercoutries}</div>
+  //         </Link>
+  //       );
+      
+  //     }));
+  //   }
+  //   return <div className="border">None</div>
+  // }
 
   render() {
-    const { country } = this.state;
-    const { currencies } = country
-    console.log(country.borders);
-    console.log(country.currencies);
-    console.log(country.languages);
+    const { country, loading } = this.state;
 
-    // const a = country.currencies;
-    // const b = [...currencies];
-    console.log(currencies)
-
-    // const currencies = country.currencies
-    // const moeda = currencies.forEach(item => item.name);
-    // console.log(moeda);
-
-    // const arrayLinguas = country.languages;
-    // const linguas = arrayLinguas.forEach((item) => item.name);
-    // const moeda = country.currencies;
-
+    if(loading){
+      return(
+        <h2>loading</h2>
+      )
+    }
 
     return (
       <div className="flex country-page">
@@ -95,12 +90,13 @@ class CountryDetails extends React.Component {
 
             <div>
               <p>{`Top Level Domain: ${country.topLevelDomain}`}</p>
-              <p>{`Currencies: ${country.currencies}`}</p>
-              <p>{`Languages: ${country.languages}`}</p>
+              <p>{`Currencies: ${country.currencies[0].name}`}</p>
+              <p>{`Languages: ${country.languages.map((item) => item.name)}`}</p>
             </div>
           </div>
           
           <p>Border Countries:</p>
+          {/* { this.handleBorderCoutries() } */}
 
           <button type="button">
             <Link class="link" to="/">Voltar</Link>
