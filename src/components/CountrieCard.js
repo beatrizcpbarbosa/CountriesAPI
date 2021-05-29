@@ -8,7 +8,7 @@ class CountryCard extends React.Component {
 
     return (
         <div className="card">
-          <Link className="link" to={ `/${country.name}` }>
+          <Link className="link" to={ `/${country.name }` }>
 
             <div className="img-cover">
               <img  src={ country.flag } alt={ country.name } />

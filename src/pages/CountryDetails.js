@@ -9,6 +9,7 @@ class CountryDetails extends React.Component {
       country: {},
       countries: [],
       loading: true,
+      loadingC: true,
     }
   }
 
@@ -17,7 +18,7 @@ class CountryDetails extends React.Component {
     const requestData = await requestReturn.json();
     this.setState({
       countries: requestData,
-      loading: false,
+      loadingC: false,
     })
   }
 
@@ -37,35 +38,34 @@ class CountryDetails extends React.Component {
     this.fetchCountries();
   }
 
-  // handleBorderCoutries = () => {
-  //   const { country, countries } = this.state;
+  handleBorderCoutries = () => {
+    const { country, countries } = this.state;
+    const bordercoutries = country.borders;
+    
+    const arrayCountries = bordercoutries.map((border) => {
+      return countries.filter((country) => country.alpha3Code === border);
+    });
+  
+    const objetoCoutries = arrayCountries.map((array) => array[0]);
 
-  //   console.log(country.borders);
-  //   console.log(bordercoutries);
-      
-  //   if(country.borders.length > 0) {
+    console.log(objetoCoutries)
 
-  //     const bordercoutries = country.borders
-  //     .map((countryBorder) => countries.filter((country) =>{
-        
-  //       country.alpha3Code === countryBorder
+    if(bordercoutries.length > 0) {
+      objetoCoutries.map((country) => {
+        return console.log(country)
+        // return <Link to={ `/${country.name }` }>{ country.name } </Link>
+      })  
+    }
 
-  //       return (
-  //         // <Link className="link" to={ `/${}` }>
-  //         <Link key={ xmen.id }>
-  //           <div className="border">{bordercoutries}</div>
-  //         </Link>
-  //       );
-      
-  //     }));
-  //   }
-  //   return <div className="border">None</div>
-  // }
+    return <div>none</div>
+
+  }
+
 
   render() {
-    const { country, loading } = this.state;
-
-    if(loading){
+    const { country, loading, loadingC } = this.state;
+  
+    if(loading === true && loadingC === true){
       return(
         <h2>loading</h2>
       )
@@ -95,8 +95,10 @@ class CountryDetails extends React.Component {
             </div>
           </div>
           
-          <p>Border Countries:</p>
-          {/* { this.handleBorderCoutries() } */}
+          <div> 
+            <p>Border Countries:</p>
+            { this.handleBorderCoutries() }
+          </div>
 
           <button type="button">
             <Link class="link" to="/">Voltar</Link>
