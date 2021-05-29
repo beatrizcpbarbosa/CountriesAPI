@@ -39,33 +39,35 @@ class CountryDetails extends React.Component {
   }
 
   handleBorderCoutries = () => {
-    const { country, countries } = this.state;
+    const { country, countries, loadingC} = this.state;
     const bordercoutries = country.borders;
+
+    if(loadingC) {
+      return <div>none</div>
+    }
     
     const arrayCountries = bordercoutries.map((border) => {
       return countries.filter((country) => country.alpha3Code === border);
     });
-  
+    
     const objetoCoutries = arrayCountries.map((array) => array[0]);
-
     console.log(objetoCoutries)
-
-    if(bordercoutries.length > 0) {
-      objetoCoutries.map((country) => {
-        return console.log(country)
-        // return <Link to={ `/${country.name }` }>{ country.name } </Link>
+    
+    const linksBordes = objetoCoutries.map((country) => {
+      console.log(country)
+      return <Link to={ `/${country.name }` }>{ country.name } </Link>
       })  
-    }
-
-    return <div>none</div>
-
+    
+    return linksBordes;
+    
   }
 
 
+
   render() {
-    const { country, loading, loadingC } = this.state;
+    const { country, loading } = this.state;
   
-    if(loading === true && loadingC === true){
+    if(loading){
       return(
         <h2>loading</h2>
       )
