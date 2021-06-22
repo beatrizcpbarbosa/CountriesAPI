@@ -96,10 +96,30 @@ select {
 
 .content button {
   width: 100px;
-  padding: 10px;
+  padding: 5px;
+  margin: 5px;
   border: none;
   background-color: white;
   box-shadow: 1px 1px 5px rgb(202, 202, 202);
+}
+
+.voltar {
+  width: 100px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  background-color: white;
+  box-shadow: 1px 1px 5px rgb(202, 202, 202);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info div {
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 700px) {
