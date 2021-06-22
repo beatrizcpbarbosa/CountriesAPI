@@ -3,7 +3,7 @@
  Find information about any country in the world!
 
 
-### The challenge
+### Features
 
 - See all countries from the API on the homepage
 - Search for a country using an `input` field
