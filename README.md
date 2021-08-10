@@ -10,7 +10,6 @@
 - [x] Filter countries by region
 - [x] Click on a country to see more detailed information on a separate page
 - [x] Click through to the border countries on the detail page
-- [ ] Dark mode is still in progress
 
 
 ### Built with
